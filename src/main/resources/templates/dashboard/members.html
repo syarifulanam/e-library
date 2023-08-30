@@ -1,0 +1,49 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/dashboard/layout-for-dashboard}">
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Members</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Members List</li>
+        </ol>
+        <div>
+            <a th:href="@{/members/create}" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> Create
+            </a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Member Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Number Phone</th>
+                    <th scope="col">Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>A001</td>
+                    <td>Tono</td>
+                    <td>Depok</td>
+                    <td>081388775544</td>
+                    <td>
+                        <a th:href="@{/members/edit}" class="btn btn-warning btn-sm">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
