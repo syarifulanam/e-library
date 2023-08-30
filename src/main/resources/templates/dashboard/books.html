@@ -1,0 +1,51 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/dashboard/layout-for-dashboard}">
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Books</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Book List</li>
+        </ol>
+        <div>
+            <a th:href="@{/books/create}" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> Create
+            </a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Book Id</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Years</th>
+                    <th scope="col">Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>B001</td>
+                    <td>Matematika</td>
+                    <td>Anam</td>
+                    <td>Armit</td>
+                    <td>2020</td>
+                    <td>
+                        <a th:href="@{/books/edit}" class="btn btn-warning btn-sm">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
