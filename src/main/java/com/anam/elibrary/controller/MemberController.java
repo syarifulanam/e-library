@@ -1,12 +1,11 @@
 package com.anam.elibrary.controller;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MembersController {
+public class MemberController {
 
     @GetMapping("/members")
     public String members(Model model) {
