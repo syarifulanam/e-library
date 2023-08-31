@@ -63,22 +63,20 @@
                     data-bs-parent="#sidenavAccordion"
             >
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="log-circulation.html"
-                    >Log Circulation</a
+                    <a class="nav-link" th:href="@{/log-circulations}">
+                        Log Circulation</a
                     >
-
-                    <a class="nav-link" href="log-return.html"
+                    <a class="nav-link" th:href="@{/log-returns}"
                     >Log Return</a
                     >
                 </nav>
             </div>
-
             <div class="sb-sidenav-menu-heading">Setting</div>
-            <a class="nav-link" href="system-user.html">
+            <a class="nav-link" th:href="@{/system-users}">
                 <div class="sb-nav-link-icon">
                     <i class="fa-solid fa-users"></i>
                 </div>
-                System User
+                System Users
             </a>
             <a class="nav-link" href="logout.html">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
