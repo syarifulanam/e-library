@@ -16,23 +16,25 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Book Id</th>
-                    <th scope="col">Book</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Publisher</th>
-                    <th scope="col">Author</th>
                     <th scope="col">Years</th>
-                    <th scope="col">Manage</th>
+                    <th scope="col">Book Code</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>B001</td>
-                    <td>Matematika</td>
-                    <td>Anam</td>
-                    <td>Armit</td>
-                    <td>2020</td>
+                <tr th:each="book, iteration : ${books}">
+                    <th scope="row" th:text="${book.id}"></th>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.publisher}"></td>
+                    <td th:text="${book.year}"></td>
+                    <td th:text="${book.bookCode}"></td>
+                    <td th:text="${book.createdAt}"></td>
+                    <td th:text="${book.updatedAt}"></td>
                     <td>
                         <a th:href="@{/books/edit}" class="btn btn-warning btn-sm">
                             <i class="fa-solid fa-pen"></i> Edit
