@@ -17,7 +17,7 @@
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">No</th>
+          <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Username</th>
           <th scope="col">Role</th>
@@ -25,11 +25,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Tono</td>
-          <td>Admin</td>
-          <td>Administrator</td>
+        <tr th:each="user, iteration : ${users}">
+          <th scope="row" th:text="${user.id}"></th>
+          <td th:text="${user.name}"></td>
+          <td th:text="${user.username}"></td>
+          <td th:text="${user.role}"></td>
           <td>
             <a th:href="@{/system-users/edit}" class="btn btn-warning btn-sm">
               <i class="fa-solid fa-pen"></i> Edit
