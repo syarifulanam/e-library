@@ -5,6 +5,7 @@ import com.anam.elibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,5 +16,11 @@ public class BookService {
 
     public List<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    public int save(Book book) {
+        book.setCreatedAt(new Date());
+        book.setUpdatedAt(new Date());
+        return bookRepository.save(book);
     }
 }

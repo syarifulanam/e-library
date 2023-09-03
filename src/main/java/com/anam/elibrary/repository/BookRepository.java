@@ -27,4 +27,11 @@ public class BookRepository {
         );
     }
 
+    public int save(Book book) {
+        String query = "INSERT INTO books (title, publisher, year, book_code, created_at, updated_at) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(query,
+                book.getTitle(), book.getPublisher(), book.getYear(), book.getBookCode(), book.getCreatedAt(),
+                book.getUpdatedAt());
+    }
 }
