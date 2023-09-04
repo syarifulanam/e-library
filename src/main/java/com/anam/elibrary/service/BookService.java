@@ -23,4 +23,8 @@ public class BookService {
         book.setUpdatedAt(new Date());
         return bookRepository.save(book);
     }
+
+    public int deleteById(int id) {
+        return bookRepository.deleteById(id);
+    }
 }

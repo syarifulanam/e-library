@@ -3,13 +3,13 @@
       layout:decorate="~{/dashboard/layout-for-dashboard}">
 <div layout:fragment="content">
   <div class="container-fluid px-4">
-    <h1 class="mt-4">System Users</h1>
+    <h1 class="mt-4">Users</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">Create New System Users</li>
+      <li class="breadcrumb-item active">Create New Users</li>
     </ol>
     <div class="card">
       <div class="card-body">
-        <form th:action="@{/system-users/create}" method="post" th:object="${user}">
+        <form th:action="@{/users/create}" method="post" th:object="${user}">
           <div class="mb-1 row">
             <label class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
@@ -41,7 +41,7 @@
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
               <button type="submit" class="btn btn-success btn-sm">Save</button>
-              <a th:href="@{/system-users}" type="button" class="btn btn-warning btn-sm">Cancel</a>
+              <a th:href="@{/users}" type="button" class="btn btn-warning btn-sm">Cancel</a>
             </div>
           </div>
         </form>

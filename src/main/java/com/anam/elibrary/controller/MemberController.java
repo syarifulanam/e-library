@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -31,7 +32,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/create")
-    public String memberCreateSubmit(@ModelAttribute(value = "member")Member member) {
+    public String memberCreateSubmit(@ModelAttribute(value = "member") Member member) {
         memberService.save(member);
         return "redirect:members";
     }
@@ -40,5 +41,11 @@ public class MemberController {
     public String membersEdit(Model model) {
         model.addAttribute("titlePage", "MEMBERS EDIT");
         return "dashboard/members-edit";
+    }
+
+    @GetMapping("/members/delete/{id}")
+    public String membersDeleteSubmit(@PathVariable("id") int id) {
+        memberService.deleteById(id);
+        return "redirect:/members";
     }
 }

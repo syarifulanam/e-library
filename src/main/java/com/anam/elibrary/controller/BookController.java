@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -40,5 +41,11 @@ public class BookController {
     public String booksEdit(Model model) {
         model.addAttribute("titlePage", "BOOKS EDIT");
         return "dashboard/books-edit";
+    }
+
+    @GetMapping("/books/delete/{id}")
+    public String booksDeleteSubmit(@PathVariable("id") int id) {
+        bookService.deleteById(id);
+        return "redirect:/books";
     }
 }

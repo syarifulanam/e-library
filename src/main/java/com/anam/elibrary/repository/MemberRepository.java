@@ -33,5 +33,9 @@ public class MemberRepository {
         return jdbcTemplate.update(query,
                 member.getName(), member.getMemberCode(), member.getAddress(), member.getPhoneNumber(), member.getCreatedAt(), member.getUpdatedAt());
     }
+
+    public int deleteById(int id) {
+        return jdbcTemplate.update("DELETE FROM members WHERE id = ?", id);
+    }
 }
 

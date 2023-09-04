@@ -5,12 +5,12 @@
 <body>
 <div layout:fragment="content">
   <div class="container-fluid px-4">
-    <h1 class="mt-4">System Users</h1>
+    <h1 class="mt-4">Users</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">System Users List</li>
+      <li class="breadcrumb-item active">Users List</li>
     </ol>
     <div>
-      <a th:href="@{/system-users/create}" class="btn btn-primary btn-sm">
+      <a th:href="@{/users/create}" class="btn btn-primary btn-sm">
         <i class="fa-solid fa-plus"></i>Create
       </a>
       </a>
@@ -31,12 +31,12 @@
           <td th:text="${user.username}"></td>
           <td th:text="${user.role}"></td>
           <td>
-            <a th:href="@{/system-users/edit}" class="btn btn-warning btn-sm">
+            <a th:href="@{/users/edit}" class="btn btn-warning btn-sm">
               <i class="fa-solid fa-pen"></i> Edit
             </a>
-            <button type="button" class="btn btn-danger btn-sm">
+            <a th:href="@{'/users/delete/' + ${user.id} }" type="button" class="btn btn-danger btn-sm">
               <i class="fa-solid fa-trash-can"></i> Delete
-            </button>
+            </a>
           </td>
         </tr>
         </tbody>

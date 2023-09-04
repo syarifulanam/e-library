@@ -33,4 +33,8 @@ public class UserRepository {
         return jdbcTemplate.update(query,
                 user.getName(), user.getUsername(), user.getPassword(), user.getRole(), user.getCreatedAt(), user.getUpdatedAt());
     }
+
+    public int deleteById(int id) {
+        return jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
+    }
 }

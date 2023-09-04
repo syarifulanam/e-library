@@ -14,8 +14,7 @@ public class BookRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Book> findAll() {
-        String query = "SELECT * FROM books";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new Book(
+        return jdbcTemplate.query("SELECT * FROM books", (rs, rowNum) -> new Book(
                         rs.getInt("id"),
                         rs.getString("title"),
                         rs.getString("publisher"),
@@ -33,5 +32,9 @@ public class BookRepository {
         return jdbcTemplate.update(query,
                 book.getTitle(), book.getPublisher(), book.getYear(), book.getBookCode(), book.getCreatedAt(),
                 book.getUpdatedAt());
+    }
+
+    public int deleteById(int id) {
+        return jdbcTemplate.update("DELETE FROM books WHERE id = ?", id);
     }
 }

@@ -23,4 +23,8 @@ public class MemberService {
         member.setUpdatedAt(new Date());
         return memberRepository.save(member);
     }
+
+    public int deleteById(int id) {
+        return memberRepository.deleteById(id);
+    }
 }

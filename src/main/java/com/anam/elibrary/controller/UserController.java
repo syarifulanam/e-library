@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -15,29 +16,35 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/system-users")
+    @GetMapping("/users")
     public String users(Model model) {
         model.addAttribute("titlePage", "SYSTEM USERS");
         model.addAttribute("users", userService.findAll());
-        return "dashboard/system-users";
+        return "dashboard/users";
     }
 
-    @GetMapping("/system-users/create")
+    @GetMapping("/users/create")
     public String systemUsersCreate(Model model) {
         model.addAttribute("titlePage", "SYSTEM USERS CREATE");
         model.addAttribute("user", new User());
-        return "dashboard/system-users-create";
+        return "dashboard/users-create";
     }
 
-    @PostMapping("/system-users/create")
-    public String usersCreateSubmit(@ModelAttribute(value = "user") User user) {
+    @PostMapping("/users/create")
+    public String systemUsersCreateSubmit(@ModelAttribute(value = "user") User user) {
         userService.save(user);
-        return "redirect:/system-users";
+        return "redirect:/users";
     }
 
-    @GetMapping("/system-users/edit")
+    @GetMapping("/users/edit")
     public String systemUsersEdit(Model model) {
         model.addAttribute("titlePage", "SYSTEM USERS EDIT");
-        return "dashboard/system-users-edit";
+        return "dashboard/users-edit";
+    }
+
+    @GetMapping("/users/delete/{id}")
+    public String systemUsersDeleteSubmit(@PathVariable("id")int id) {
+        userService.deleteById(id);
+        return "redirect:/users";
     }
 }

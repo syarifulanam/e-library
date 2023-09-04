@@ -23,4 +23,8 @@ public class UserService {
         user.setUpdatedAt(new Date());
         return userRepository.save(user);
     }
+
+    public int deleteById(int id) {
+        return userRepository.deleteById(id);
+    }
 }
