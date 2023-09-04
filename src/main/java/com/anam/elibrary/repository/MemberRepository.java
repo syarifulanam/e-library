@@ -26,5 +26,12 @@ public class MemberRepository {
                 )
         );
     }
+
+    public int save(Member member) {
+        String query = "INSERT INTO members (name, member_code, address, phone_number, created_at, updated_at) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(query,
+                member.getName(), member.getMemberCode(), member.getAddress(), member.getPhoneNumber(), member.getCreatedAt(), member.getUpdatedAt());
+    }
 }
 

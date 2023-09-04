@@ -5,6 +5,7 @@ import com.anam.elibrary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,8 +15,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public List<User> findAll() {
-        List<User> users = userRepository.findAll();
-        return users;
-//        return userRepository.findAll();
+        return userRepository.findAll();
+    }
+
+    public int save(User user) {
+        user.setCreatedAt(new Date());
+        user.setUpdatedAt(new Date());
+        return userRepository.save(user);
     }
 }

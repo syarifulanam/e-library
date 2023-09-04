@@ -26,4 +26,11 @@ public class UserRepository {
                 )
         );
     }
+
+    public int save(User user) {
+        String query = "INSERT INTO users (name, username, password, role, created_at, updated_at) " +
+                "VALUE (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(query,
+                user.getName(), user.getUsername(), user.getPassword(), user.getRole(), user.getCreatedAt(), user.getUpdatedAt());
+    }
 }
