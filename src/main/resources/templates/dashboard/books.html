@@ -36,7 +36,7 @@
                     <td th:text="${book.createdAt}"></td>
                     <td th:text="${book.updatedAt}"></td>
                     <td>
-                        <a th:href="@{/books/edit}" class="btn btn-warning btn-sm">
+                        <a th:href="@{ '/books/edit/' + ${book.id} }" class="btn btn-warning btn-sm">
                             <i class="fa-solid fa-pen"></i> Edit
                         </a>
                         <a th:href="@{ '/books/delete/' + ${book.id} }" type="button" class="btn btn-danger btn-sm">

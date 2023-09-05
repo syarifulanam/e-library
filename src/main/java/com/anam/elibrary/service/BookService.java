@@ -18,6 +18,10 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public Book findById(int id) {
+        return bookRepository.findById(id);
+    }
+
     public int save(Book book) {
         book.setCreatedAt(new Date());
         book.setUpdatedAt(new Date());
@@ -26,5 +30,10 @@ public class BookService {
 
     public int deleteById(int id) {
         return bookRepository.deleteById(id);
+    }
+
+    public int update(Book book) {
+        book.setUpdatedAt(new Date());
+        return bookRepository.update(book);
     }
 }

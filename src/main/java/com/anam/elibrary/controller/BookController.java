@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class BookController {
 
@@ -18,8 +20,9 @@ public class BookController {
 
     @GetMapping("/books")
     public String books(Model model) {
+        List<Book> books = bookService.findAll();
         model.addAttribute("titlePage", "BOOKS");
-        model.addAttribute("books", bookService.findAll());
+        model.addAttribute("books", books);
         return "dashboard/books";
     }
 
@@ -36,11 +39,26 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @GetMapping("/books/edit/{id}")
+    public String booksEdit(Model model, @PathVariable("id") int id) {
+        /*Book book = new Book();
+        book.setId(12344);
+        book.setTitle("APA AJA BOLEH");*/
 
-    @GetMapping("/books/edit")
-    public String booksEdit(Model model) {
+        /*Book book = bookService.findById(id);
         model.addAttribute("titlePage", "BOOKS EDIT");
+        model.addAttribute("book", book);
+        return "dashboard/books-edit";*/
+
+        model.addAttribute("titlePage", "BOOKS EDIT");
+        model.addAttribute("book", bookService.findById(id));
         return "dashboard/books-edit";
+    }
+
+    @PostMapping("/books/edit")
+    public String booksEditSubmit(@ModelAttribute(value = "book") Book book) {
+        bookService.update(book);
+        return "redirect:/books";
     }
 
     @GetMapping("/books/delete/{id}")

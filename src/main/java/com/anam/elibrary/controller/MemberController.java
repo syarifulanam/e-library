@@ -32,9 +32,9 @@ public class MemberController {
     }
 
     @PostMapping("/members/create")
-    public String memberCreateSubmit(@ModelAttribute(value = "member") Member member) {
+    public String membersCreateSubmit(@ModelAttribute(value = "member") Member member) {
         memberService.save(member);
-        return "redirect:members";
+        return "redirect:/members";
     }
 
     @GetMapping("/members/edit")
