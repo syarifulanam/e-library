@@ -18,32 +18,39 @@ public class UserController {
 
     @GetMapping("/users")
     public String users(Model model) {
-        model.addAttribute("titlePage", "SYSTEM USERS");
+        model.addAttribute("titlePage", "USERS");
         model.addAttribute("users", userService.findAll());
         return "dashboard/users";
     }
 
     @GetMapping("/users/create")
-    public String systemUsersCreate(Model model) {
-        model.addAttribute("titlePage", "SYSTEM USERS CREATE");
+    public String usersCreate(Model model) {
+        model.addAttribute("titlePage", "USERS CREATE");
         model.addAttribute("user", new User());
         return "dashboard/users-create";
     }
 
     @PostMapping("/users/create")
-    public String systemUsersCreateSubmit(@ModelAttribute(value = "user") User user) {
+    public String usersCreateSubmit(@ModelAttribute(value = "user") User user) {
         userService.save(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/users/edit")
-    public String systemUsersEdit(Model model) {
-        model.addAttribute("titlePage", "SYSTEM USERS EDIT");
+    @GetMapping("/users/edit/{id}")
+    public String userEdit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("titlePage", "USERS EDIT");
+        model.addAttribute("user", userService.findById(id));
         return "dashboard/users-edit";
     }
 
+    @PostMapping("/users/edit")
+    public String usersEditSubmit(@ModelAttribute(value = "user") User user) {
+        userService.update(user);
+        return "redirect:/users";
+    }
+
     @GetMapping("/users/delete/{id}")
-    public String systemUsersDeleteSubmit(@PathVariable("id")int id) {
+    public String usersDeleteSubmit(@PathVariable("id") int id) {
         userService.deleteById(id);
         return "redirect:/users";
     }

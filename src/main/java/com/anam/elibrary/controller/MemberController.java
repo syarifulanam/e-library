@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class MemberController {
 
@@ -37,10 +39,17 @@ public class MemberController {
         return "redirect:/members";
     }
 
-    @GetMapping("/members/edit")
-    public String membersEdit(Model model) {
+    @GetMapping("/members/edit/{id}")
+    public String membersEdit(Model model, @PathVariable("id") int id) {
         model.addAttribute("titlePage", "MEMBERS EDIT");
+        model.addAttribute("member", memberService.findById(id));
         return "dashboard/members-edit";
+    }
+
+    @PostMapping("/members/edit")
+    public String membersEditSubmit(@ModelAttribute(value = "member") Member member) {
+        memberService.update(member);
+        return "redirect:/members";
     }
 
     @GetMapping("/members/delete/{id}")

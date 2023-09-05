@@ -18,6 +18,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User findById(int id) {
+        return userRepository.findById(id);
+    }
+
     public int save(User user) {
         user.setCreatedAt(new Date());
         user.setUpdatedAt(new Date());
@@ -27,4 +31,10 @@ public class UserService {
     public int deleteById(int id) {
         return userRepository.deleteById(id);
     }
+
+    public int update(User user) {
+        user.setUpdatedAt(new Date());
+        return userRepository.update(user);
+    }
+
 }

@@ -20,7 +20,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Member Code</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Number Phone</th>
+                    <th scope="col">Phone Number</th>
                     <th scope="col">Created</th>
                     <th scope="col">Updated</th>
                     <th scope="col">Action</th>
@@ -36,7 +36,7 @@
                     <td th:text="${member.createdAt}"></td>
                     <td th:text="${member.updatedAt}"></td>
                     <td>
-                        <a th:href="@{/members/edit}" class="btn btn-warning btn-sm">
+                        <a th:href="@{ '/members/edit/' + ${member.id} }" class="btn btn-warning btn-sm">
                             <i class="fa-solid fa-pen"></i> Edit
                         </a>
                         <a th:href="@{'/members/delete/' + ${member.id} }" type="button" class="btn btn-danger btn-sm">

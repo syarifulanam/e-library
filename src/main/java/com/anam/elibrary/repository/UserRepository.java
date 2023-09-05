@@ -14,15 +14,14 @@ public class UserRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<User> findAll() {
-        String query = "SELECT * FROM users";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new User(
-                rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("username"),
-                rs.getString("password"),
-                rs.getString("role"),
-                rs.getTimestamp("created_at"),
-                rs.getTimestamp("updated_at")
+        return jdbcTemplate.query("SELECT * FROM users", (rs, rowNum) -> new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at")
                 )
         );
     }
@@ -37,4 +36,27 @@ public class UserRepository {
     public int deleteById(int id) {
         return jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
     }
+
+    public int update(User user) {
+        String query = "UPDATE users SET name = ?, username = ?, password = ?, role = ?, updated_at = ? WHERE id = ?";
+        return jdbcTemplate.update(query,
+                user.getName(), user.getUsername(), user.getPassword(), user.getRole(), user.getUpdatedAt(), user.getId());
+    }
+
+    public User findById(int id) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, new Object[]{id}, (rs, rowNum) -> new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at")
+                )
+        );
+    }
 }
+
+
+

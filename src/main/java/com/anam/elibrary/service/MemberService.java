@@ -18,6 +18,10 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member findById(int id) {
+        return memberRepository.findById(id);
+    }
+
     public int save(Member member) {
         member.setCreatedAt(new Date());
         member.setUpdatedAt(new Date());
@@ -26,5 +30,10 @@ public class MemberService {
 
     public int deleteById(int id) {
         return memberRepository.deleteById(id);
+    }
+
+    public int update(Member member) {
+        member.setUpdatedAt(new Date());
+        return memberRepository.update(member);
     }
 }

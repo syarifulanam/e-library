@@ -31,7 +31,7 @@
           <td th:text="${user.username}"></td>
           <td th:text="${user.role}"></td>
           <td>
-            <a th:href="@{/users/edit}" class="btn btn-warning btn-sm">
+            <a th:href="@{ '/users/edit/' + ${user.id} }" class="btn btn-warning btn-sm">
               <i class="fa-solid fa-pen"></i> Edit
             </a>
             <a th:href="@{'/users/delete/' + ${user.id} }" type="button" class="btn btn-danger btn-sm">

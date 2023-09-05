@@ -2,40 +2,53 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/dashboard/layout-for-dashboard}">
 <div layout:fragment="content">
-  <div class="container-fluid px-4">
-    <h1 class="mt-4">Users</h1>
-    <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">Edit New Users</li>
-    </ol>
-    <div class="card">
-      <div class="card-body">
-        <div class="mb-1 row">
-          <label class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="#####">
-          </div>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Users</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Edit New Users</li>
+        </ol>
+        <div class="card">
+            <div class="card-body">
+                <form th:action="@{/users/edit}" method="post" th:object="${user}">
+                    <input type="hidden" class="form-control" th:field="*{id}">
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{name}">
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{username}">
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" th:field="*{password}">
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label">Role</label>
+                        <div class="col-sm-10">
+                            <select class="form-select form-select-sm" th:field="*{role}">
+                                <option th:value="S" th:text="Select"></option>
+                                <option th:value="Admin" th:text="Administrator"></option>
+                                <option th:value="Staff" th:text="Staff"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-success btn-sm">Update</button>
+                            <a th:href="@{/users}" type="button" class="btn btn-warning btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-1 row">
-          <label class="col-sm-2 col-form-label">Username</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="#">
-          </div>
-        </div>
-        <div class="mb-1 row">
-          <label class="col-sm-2 col-form-label">Role</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="##">
-          </div>
-        </div>
-        <div class="mb-1 row">
-          <label class="col-sm-2 col-form-label"></label>
-          <div class="col-sm-10">
-            <button type="submit" class="btn btn-success btn-sm">Update</button>
-            <a th:href="@{/users}" type="button" class="btn btn-warning btn-sm">Cancel</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 </html>

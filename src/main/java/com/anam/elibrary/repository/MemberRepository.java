@@ -14,8 +14,8 @@ public class MemberRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Member> findAll() {
-        String query = "SELECT * FROM members";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new Member(
+        return jdbcTemplate.query("SELECT * FROM members", (rs, rowNum) ->
+                new Member(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("member_code"),
@@ -36,6 +36,27 @@ public class MemberRepository {
 
     public int deleteById(int id) {
         return jdbcTemplate.update("DELETE FROM members WHERE id = ?", id);
+    }
+
+    public int update(Member member) {
+        String query = "UPDATE members SET name = ?, address =?, phone_number = ?, updated_at = ? WHERE id = ?";
+        return jdbcTemplate.update(query,
+                member.getName(), member.getAddress(), member.getPhoneNumber(), member.getUpdatedAt(), member.getId());
+    }
+
+    public Member findById(int id) {
+        String query = "SELECT * FROM members WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, new Object[]{id}, (rs, rowNum) ->
+                new Member(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("member_code"),
+                        rs.getString("address"),
+                        rs.getString("phone_number"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at")
+                )
+        );
     }
 }
 
