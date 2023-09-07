@@ -5,19 +5,19 @@
 <body>
 <div layout:fragment="content">
   <div class="container-fluid px-4">
-    <h1 class="mt-4">System Users</h1>
+    <h1 class="mt-4">Users</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">System Users List</li>
+      <li class="breadcrumb-item active">Users List</li>
     </ol>
     <div>
-      <a th:href="@{/system-users/create}" class="btn btn-primary btn-sm">
+      <a th:href="@{/users/create}" class="btn btn-primary btn-sm">
         <i class="fa-solid fa-plus"></i>Create
       </a>
       </a>
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">No</th>
+          <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Username</th>
           <th scope="col">Role</th>
@@ -25,18 +25,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Tono</td>
-          <td>Admin</td>
-          <td>Administrator</td>
+        <tr th:each="user, iteration : ${users}">
+          <th scope="row" th:text="${user.id}"></th>
+          <td th:text="${user.name}"></td>
+          <td th:text="${user.username}"></td>
+          <td th:text="${user.role}"></td>
           <td>
-            <a th:href="@{/system-users/edit}" class="btn btn-warning btn-sm">
+            <a th:href="@{ '/users/edit/' + ${user.id} }" class="btn btn-warning btn-sm">
               <i class="fa-solid fa-pen"></i> Edit
             </a>
-            <button type="button" class="btn btn-danger btn-sm">
+            <a th:href="@{'/users/delete/' + ${user.id} }" type="button" class="btn btn-danger btn-sm">
               <i class="fa-solid fa-trash-can"></i> Delete
-            </button>
+            </a>
           </td>
         </tr>
         </tbody>
