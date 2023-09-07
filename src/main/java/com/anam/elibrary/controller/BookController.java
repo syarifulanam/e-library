@@ -45,7 +45,7 @@ public class BookController {
         book.setId(12344);
         book.setTitle("APA AJA BOLEH");*/
 
-        /*Book book = bookService.findById(id);
+        /* = bookService.findById(id);
         model.addAttribute("titlePage", "BOOKS EDIT");
         model.addAttribute("book", book);
         return "dashboard/books-edit";*/

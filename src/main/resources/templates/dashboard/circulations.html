@@ -7,65 +7,97 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Circulations</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Circulation List</li>
+            <li class="breadcrumb-item active">Master Circulation</li>
         </ol>
         <div>
-            <a th:href="@{/circulations/create}" class="btn btn-primary btn-sm">
+            <a th:href="@{/circulations/create/request}" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-plus"></i> Create
             </a>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Book</th>
-                    <th scope="col">Member</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Return Date</th>
-                    <th scope="col">Delay Days</th>
-                    <th scope="col">Charge</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>B001 - Java Programming</td>
-                    <td>M562 - Firman</td>
-                    <td>2023-04-05 13:00:12</td>
-                    <td>2023-04-09 13:00:12</td>
-                    <td>2023-04-10 13:00:12</td>
-                    <td>1</td>
-                    <td>1000</td>
-                    <td>
-                        <a th:href="@{/circulations/edit}" class="btn btn-warning btn-sm">
-                            <i class="fa-solid fa-pen"></i> Edit
-                        </a>
-                        <button type="button" class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash-can"></i> Delete
-                        </button>
-                    </td>
-                </tr>
-                <!--                <tr th:each="circulation, iteration : ${circulations}">-->
-                <!--                    <th scope="row" th:text="${circulation.id}"></th>-->
-                <!--                    <td th:text="${circulation.book_id}"></td>-->
-                <!--                    <td th:text="${circulation.member_id}"></td>-->
-                <!--                    <td th:text="${circulation.startDate}"></td>-->
-                <!--                    <td th:text="${circulation.endDate}"></td>-->
-                <!--                    <td th:text="${circulation.returnDate}"></td>-->
-                <!--                    <td th:text="${circulation.delayDate}"></td>-->
-                <!--                    <td th:text="${circulation.charge}"></td>-->
-                <!--                    <td>-->
-                <!--                        <a th:href="@{/circulations/edit}" class="btn btn-warning btn-sm">-->
-                <!--                            <i class="fa-solid fa-pen"></i> Edit-->
-                <!--                        </a>-->
-                <!--                        <button type="button" class="btn btn-danger btn-sm">-->
-                <!--                            <i class="fa-solid fa-trash-can"></i> Delete-->
-                <!--                        </button>-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-                </tbody>
-            </table>
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Book</th>
+                        <th scope="col">Member</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col">Return Date</th>
+                        <th scope="col">Total Days</th>
+                        <th scope="col">Actual Return Date</th>
+                        <th scope="col">Late Days</th>
+                        <th scope="col">Late Fees</th>
+                        <th scope="col">Total Late Fees</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Request</th>
+                        <th scope="col">Return</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>B001 - Fiqih</td>
+                        <td>M001 - Firman</td>
+                        <td>1-Sep-2023</td>
+                        <td>8-Sep-2023</td>
+                        <td>7</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>500</td>
+                        <td>0</td>
+                        <td>
+                            <div class="container mt-6">
+                                <span class="badge bg-warning">In Progress</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a th:href="@{/circulations/edit/request}" class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/circulations/create/return}" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-plus"></i> Add
+                                <a th:href="@{/circulations/edit/return}" class="btn btn-warning btn-sm">
+                                    <i class="fa-solid fa-pen"></i> Edit
+                                </a>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>B002 - Web</td>
+                        <td>M002 - Anam</td>
+                        <td>25-Aug-2023</td>
+                        <td>30-Aug-2023</td>
+                        <td>5</td>
+                        <td>2-Sep-2023</td>
+                        <td>3</td>
+                        <td>500</td>
+                        <td>1500</td>
+                        <td>
+                            <div class="container mt-6">
+                                <span class="badge bg-success">Success</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a th:href="@{/circulations/edit/request}" class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </a>
+                        </td>
+                        <td>
+                            <div>
+                                <a th:href="@{/circulations/create/return}" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                    <a th:href="@{/circulations/edit/return}" class="btn btn-warning btn-sm">
+                                        <i class="fa-solid fa-pen"></i> Edit
+                                    </a>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

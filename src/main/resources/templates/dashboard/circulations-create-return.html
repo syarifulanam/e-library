@@ -1,0 +1,98 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/dashboard/layout-for-dashboard}">
+<div layout:fragment="content">
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">Circulations</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Add Return</li>
+    </ol>
+    <div class="card">
+      <div class="card-body">
+        <form th:action="@{/circulations/create/return}" method="post" th:object="${circulation}">
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Book</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+                <option>B002-Web</option>
+                <option>B003-Fiqih</option>
+                <option>B004-QA</option>
+                <option>B005-Test</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Member</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+                <option>B002-Web</option>
+                <option>B003-Fiqih</option>
+                <option>B004-QA</option>
+                <option>B005-Test</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Request Date</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Return Date</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Late Fees</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Total Days</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Actual Return Date</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control">
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Late Days</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label">Total Late Fees</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected></option>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-success btn-sm">Submit</button>
+              <a th:href="@{/circulations}" type="button" class="btn btn-warning btn-sm">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+
