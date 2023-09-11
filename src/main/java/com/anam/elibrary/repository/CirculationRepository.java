@@ -14,6 +14,22 @@ public class CirculationRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    // untuk simpan data peminjaman buku
+    public int saveBookBorrowingData(Circulation circulation) {
+        String query = "INSERT INTO circulations (created_at, updated_at, book_id, member_id, request_date, " +
+                "return_date, days, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(query,
+                circulation.getCreatedAt(), circulation.getUpdatedAt(), circulation.getBook().getId(),
+                circulation.getMember().getId(), circulation.getRequestDate(), circulation.getReturnDate(),
+                circulation.getDays(), circulation.getStatus());
+    }
+
+    // untuk simpan data pengembalian buku
+    public int saveBookReturnData(Circulation circulation) {
+        return 0;
+    }
+
     public List<Circulation> findAll() {
 //        String query = "SELECT * FROM books_circulations";
 //        return jdbcTemplate.query(query, (rs, rowNum) -> new Circulation(

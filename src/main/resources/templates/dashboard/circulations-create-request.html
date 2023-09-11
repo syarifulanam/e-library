@@ -13,45 +13,43 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label">Book</label>
                         <div class="col-sm-10">
-                            <select id="Select" class="form-select">
-                                <option>Select</option>
-                                <option>B002-Web</option>
-                                <option>B003-Fiqih</option>
-                                <option>B004-QA</option>
-                                <option>B005-Test</option>
+                            <select class="form-select" th:field="*{book}">
+                                <option th:value=null>Select a Book</option>
+                                <option th:each="book : ${books}"
+                                        th:value="${book.id}"
+                                        th:text="${book.bookCode} + ' - ' + ${book.title}"></option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label">Member</label>
                         <div class="col-sm-10">
-                            <select id="Selected" class="form-select">
-                                <option>Select</option>
-                                <option>B002-Web</option>
-                                <option>B003-Fiqih</option>
-                                <option>B004-QA</option>
-                                <option>B005-Test</option>
+                            <select class="form-select" th:field="*{member}">
+                                <option th:value=null>Select a Member</option>
+                                <option th:each="member : ${members}"
+                                        th:value="${member.id}"
+                                        th:text="${member.memberCode} + ' - ' + ${member.name}"></option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label">Request Date</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" th:field="*{requestDate}">
                         </div>
                     </div>
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label">Return Date</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" th:field="*{returnDate}">
                         </div>
                     </div>
-                    <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label">Late Fees</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" min="100" max="100000">
-                        </div>
-                    </div>
+<!--                    <div class="mb-1 row">-->
+<!--                        <label class="col-sm-2 col-form-label">Late Fees</label>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="number" class="form-control" min="100" max="100000" th:field="*{lateFees}">-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">

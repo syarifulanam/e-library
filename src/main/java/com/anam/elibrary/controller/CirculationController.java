@@ -1,7 +1,9 @@
 package com.anam.elibrary.controller;
 
 import com.anam.elibrary.entity.Circulation;
+import com.anam.elibrary.service.BookService;
 import com.anam.elibrary.service.CirculationService;
+import com.anam.elibrary.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,12 @@ public class CirculationController {
     @Autowired
     private CirculationService circulationService;
 
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private MemberService memberService;
+
     @GetMapping("/circulations")
     public String circulation(Model model) {
         model.addAttribute("titlePage", "CIRCULATIONS");
@@ -25,12 +33,15 @@ public class CirculationController {
     @GetMapping("/circulations/create/request")
     public String circulationCreateRequest(Model model) {
         model.addAttribute("titlePage", "CIRCULATIONS CREATE REQUEST");
+        model.addAttribute("books", bookService.findAll());
+        model.addAttribute("members", memberService.findAll());
+        model.addAttribute("circulation", new Circulation());
         return "dashboard/circulations-create-request";
     }
 
     @PostMapping("/circulations/create/request")
-    public String circulationCreateRequest(@ModelAttribute(value = "circulation")Circulation circulation) {
-//        circulationService.save(circulation);
+    public String circulationCreateRequest(@ModelAttribute(value = "circulation") Circulation circulation) {
+        circulationService.saveBookBorrowingData(circulation);
         return "redirect:/circulations";
     }
 
