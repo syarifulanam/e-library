@@ -17,15 +17,40 @@ public class Circulation {
     private int totalLateFees; // TOTAL DENDA
     private String status; // IN PROGRESS, FINISHED, CANCELED
 
+    private String bookCode;
+    private String bookTitle;
+    private String memberCode;
+    private String memberName;
+
     public Circulation() {
     }
 
-    public Circulation(int id, Date createdAt, Date updatedAt, int bookId, int memberId, Date requestDate, Date returnDate, int days, Date actualReturnDate, int lateDays, int lateFees, int totalLateFees, String status) {
+    public Circulation(int id, Date createdAt, Date updatedAt, int bookId, int memberId, Date requestDate,
+                       Date returnDate, int days, Date actualReturnDate, int lateDays, int lateFees, int totalLateFees,
+                       String status) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.bookId = bookId;
         this.memberId = memberId;
+        this.requestDate = requestDate;
+        this.returnDate = returnDate;
+        this.days = days;
+        this.actualReturnDate = actualReturnDate;
+        this.lateDays = lateDays;
+        this.lateFees = lateFees;
+        this.totalLateFees = totalLateFees;
+        this.status = status;
+    }
+
+    public Circulation(int id, String bookCode, String bookTitle, String memberCode, String memberName,
+                       Date requestDate, Date returnDate, int days, Date actualReturnDate, int lateDays,
+                       int lateFees, int totalLateFees, String status) {
+        this.id = id;
+        this.bookCode = bookCode;
+        this.bookTitle = bookTitle;
+        this.memberCode = memberCode;
+        this.memberName = memberName;
         this.requestDate = requestDate;
         this.returnDate = returnDate;
         this.days = days;
@@ -138,5 +163,37 @@ public class Circulation {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getBookCode() {
+        return bookCode;
+    }
+
+    public void setBookCode(String bookCode) {
+        this.bookCode = bookCode;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public String getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(String memberCode) {
+        this.memberCode = memberCode;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 }

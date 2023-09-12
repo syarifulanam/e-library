@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class CirculationController {
 
@@ -26,8 +28,9 @@ public class CirculationController {
 
     @GetMapping("/circulations")
     public String circulation(Model model) {
+        List<Circulation> circulations = circulationService.findAll();
         model.addAttribute("titlePage", "CIRCULATIONS");
-        //model.addAttribute("circulations", circulationService.findAll());
+        model.addAttribute("circulations", circulations);
         return "dashboard/circulations";
     }
 
