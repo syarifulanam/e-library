@@ -46,4 +46,11 @@ public class CirculationService {
     public int saveBookReturnData(Circulation circulation) {
         return circulationRepository.saveBookReturnData(circulation);
     }
+
+    public int cancelRequest(int id) {
+        Circulation circulation = new Circulation();
+        circulation.setId(id);
+        circulation.setUpdatedAt(new Date());
+        return circulationRepository.cancelRequest(circulation);
+    }
 }

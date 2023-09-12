@@ -11,7 +11,7 @@
         </ol>
         <div>
             <a th:href="@{/circulations/create/request}" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i> Add New Request
             </a>
             <div class="table-responsive text-nowrap">
                 <table class="table">
@@ -28,8 +28,7 @@
                         <th scope="col">Late Fees</th>
                         <th scope="col">Total Late Fees</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Request</th>
-                        <th scope="col">Return</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,24 +45,24 @@
                         <td th:text="${circulation.totalLateFees}"></td>
                         <td>
                             <div class="container mt-6">
-                                <span class="badge bg-warning" th:text="${circulation.status}"></span>
+                                <span th:if="${circulation.status} == 'IN PROGRESS'" class="badge bg-warning"
+                                      th:text="${circulation.status}"></span>
+                                <span th:if="${circulation.status} == 'CANCELED'" class="badge bg-danger"
+                                      th:text="${circulation.status}"></span>
+                                <span th:if="${circulation.status} == 'FINISHED'" class="badge bg-success"
+                                      th:text="${circulation.status}"></span>
                             </div>
                         </td>
                         <td>
-                            <a th:href="@{/circulations/edit/request}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </a>
-                            <a th:href="@{/}" class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-pen"></i> Cancel
-                            </a>
-                        </td>
-                        <td>
-                            <a th:href="@{/circulations/create/return}" class="btn btn-primary btn-sm">
-                                <i class="fa-solid fa-plus"></i> Add
-                            </a>
-                            <a th:href="@{/circulations/edit/return}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </a>
+                            <div th:if="${circulation.status} == 'IN PROGRESS'">
+                                <a th:href="@{ '/circulations/cancel/request/' + ${circulation.id} }"
+                                   class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-pen"></i> Cancel Request
+                                </a>
+                                <a th:href="@{/circulations/create/return}" class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-plus"></i> Add Return
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     </tbody>

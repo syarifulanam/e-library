@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -49,21 +50,15 @@ public class CirculationController {
         return "redirect:/circulations";
     }
 
-    @GetMapping("/circulations/edit/request")
-    public String circulationEditRequest(Model model) {
-        model.addAttribute("titlePage", "CIRCULATIONS EDIT REQUEST");
-        return "dashboard/circulations-edit-request";
+    @GetMapping("/circulations/cancel/request/{id}")
+    public String circulationEditRequest(@PathVariable("id") int id) {
+        circulationService.cancelRequest(id);
+        return "redirect:/circulations";
     }
 
     @GetMapping("/circulations/create/return")
     public String circulationCreateReturn(Model model) {
         model.addAttribute("titlePage", "CIRCULATIONS CREATE RETURN");
         return "dashboard/circulations-create-return";
-    }
-
-    @GetMapping("/circulations/edit/return")
-    public String circulationEditReturn(Model model) {
-        model.addAttribute("titlePage", "CIRCULATIONS EDIT RETURN");
-        return "dashboard/circulations-edit-return";
     }
 }

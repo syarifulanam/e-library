@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -53,5 +54,12 @@ public class CirculationRepository {
                         rs.getString("status")
                 )
         );
+    }
+
+    // bikin function cancelRequest(int id)
+    // query UPDATE circulations SET updated_at = '2023-09-12 10:48:36', status = 'CANCELED' WHERE id = '2';
+    public int cancelRequest(Circulation circulation) {
+        String query = "UPDATE circulations SET updated_at = ?, status = 'CANCELED' WHERE id = ?";
+        return jdbcTemplate.update(query, circulation.getUpdatedAt(), circulation.getId());
     }
 }
