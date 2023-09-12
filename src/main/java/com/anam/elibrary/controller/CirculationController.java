@@ -1,5 +1,6 @@
 package com.anam.elibrary.controller;
 
+import com.anam.elibrary.dto.CirculationDTO;
 import com.anam.elibrary.entity.Circulation;
 import com.anam.elibrary.service.BookService;
 import com.anam.elibrary.service.CirculationService;
@@ -35,13 +36,13 @@ public class CirculationController {
         model.addAttribute("titlePage", "CIRCULATIONS CREATE REQUEST");
         model.addAttribute("books", bookService.findAll());
         model.addAttribute("members", memberService.findAll());
-        model.addAttribute("circulation", new Circulation());
+        model.addAttribute("circulationDTO", new CirculationDTO());
         return "dashboard/circulations-create-request";
     }
 
     @PostMapping("/circulations/create/request")
-    public String circulationCreateRequest(@ModelAttribute(value = "circulation") Circulation circulation) {
-        circulationService.saveBookBorrowingData(circulation);
+    public String circulationCreateRequest(@ModelAttribute(value = "circulationDTO") CirculationDTO circulationDTO) {
+        circulationService.saveBookBorrowingData(circulationDTO);
         return "redirect:/circulations";
     }
 

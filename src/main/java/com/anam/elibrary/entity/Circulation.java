@@ -6,8 +6,8 @@ public class Circulation {
     private int id;
     private Date createdAt;
     private Date updatedAt;
-    private Book book;
-    private Member member;
+    private int bookId;
+    private int memberId;
     private Date requestDate;
     private Date returnDate;
     private int days;
@@ -20,12 +20,12 @@ public class Circulation {
     public Circulation() {
     }
 
-    public Circulation(int id, Date createdAt, Date updatedAt, Book book, Member member, Date requestDate, Date returnDate, int days, Date actualReturnDate, int lateDays, int lateFees, int totalLateFees, String status) {
+    public Circulation(int id, Date createdAt, Date updatedAt, int bookId, int memberId, Date requestDate, Date returnDate, int days, Date actualReturnDate, int lateDays, int lateFees, int totalLateFees, String status) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.book = book;
-        this.member = member;
+        this.bookId = bookId;
+        this.memberId = memberId;
         this.requestDate = requestDate;
         this.returnDate = returnDate;
         this.days = days;
@@ -60,20 +60,20 @@ public class Circulation {
         this.updatedAt = updatedAt;
     }
 
-    public Book getBook() {
-        return book;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public Member getMember() {
-        return member;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public Date getRequestDate() {

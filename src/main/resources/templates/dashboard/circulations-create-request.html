@@ -9,12 +9,12 @@
         </ol>
         <div class="card">
             <div class="card-body">
-                <form th:action="@{/circulations/create/request}" method="post" th:object="${circulation}">
-                    <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label">Book</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" th:field="*{book}">
-                                <option th:value=null>Select a Book</option>
+                <form th:action="@{/circulations/create/request}" method="post" th:object="${circulationDTO}">
+                    <div class=" mb-1 row">
+                        <label class="col-sm-4 col-form-label">Book</label>
+                        <div class="col-sm-8">
+                            <select class="form-select" th:field="*{bookId}">
+                                <option th:value="0">Select a Book</option>
                                 <option th:each="book : ${books}"
                                         th:value="${book.id}"
                                         th:text="${book.bookCode} + ' - ' + ${book.title}"></option>
@@ -22,10 +22,10 @@
                         </div>
                     </div>
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label">Member</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" th:field="*{member}">
-                                <option th:value=null>Select a Member</option>
+                        <label class="col-sm-4 col-form-label">Member</label>
+                        <div class="col-sm-8">
+                            <select class="form-select" th:field="*{memberId}">
+                                <option th:value="0">Select a Member</option>
                                 <option th:each="member : ${members}"
                                         th:value="${member.id}"
                                         th:text="${member.memberCode} + ' - ' + ${member.name}"></option>
@@ -33,23 +33,23 @@
                         </div>
                     </div>
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label">Request Date</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 col-form-label">Request Date / Tanggal Pinjam Buku</label>
+                        <div class="col-sm-8">
                             <input type="date" class="form-control" th:field="*{requestDate}">
                         </div>
                     </div>
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label">Return Date</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 col-form-label">Return Date / Tanggal Pengembalian Buku</label>
+                        <div class="col-sm-8">
                             <input type="date" class="form-control" th:field="*{returnDate}">
                         </div>
                     </div>
-<!--                    <div class="mb-1 row">-->
-<!--                        <label class="col-sm-2 col-form-label">Late Fees</label>-->
-<!--                        <div class="col-sm-10">-->
-<!--                            <input type="number" class="form-control" min="100" max="100000" th:field="*{lateFees}">-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="mb-1 row">
+                        <label class="col-sm-4 col-form-label">Late Fees / Denda Keterlambatan Per Hari</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" min="100" max="100000" th:field="*{lateFees}">
+                        </div>
+                    </div>
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">

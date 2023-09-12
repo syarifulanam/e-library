@@ -17,12 +17,12 @@ public class CirculationRepository {
     // untuk simpan data peminjaman buku
     public int saveBookBorrowingData(Circulation circulation) {
         String query = "INSERT INTO circulations (created_at, updated_at, book_id, member_id, request_date, " +
-                "return_date, days, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "return_date, days, status, late_fees) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(query,
-                circulation.getCreatedAt(), circulation.getUpdatedAt(), circulation.getBook().getId(),
-                circulation.getMember().getId(), circulation.getRequestDate(), circulation.getReturnDate(),
-                circulation.getDays(), circulation.getStatus());
+                circulation.getCreatedAt(), circulation.getUpdatedAt(), circulation.getBookId(),
+                circulation.getMemberId(), circulation.getRequestDate(), circulation.getReturnDate(),
+                circulation.getDays(), circulation.getStatus(), circulation.getLateFees());
     }
 
     // untuk simpan data pengembalian buku
