@@ -43,6 +43,7 @@ public class Circulation {
         this.status = status;
     }
 
+    // constructor untuk menampilkan data findAll
     public Circulation(int id, String bookCode, String bookTitle, String memberCode, String memberName,
                        Date requestDate, Date returnDate, int days, Date actualReturnDate, int lateDays,
                        int lateFees, int totalLateFees, String status) {

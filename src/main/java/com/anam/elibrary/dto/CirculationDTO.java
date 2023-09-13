@@ -1,5 +1,7 @@
 package com.anam.elibrary.dto;
 
+import java.util.Date;
+
 // DTO = Data Transfer Object
 // untuk ngisi data Form
 public class CirculationDTO {
@@ -9,7 +11,18 @@ public class CirculationDTO {
     private String returnDate;
     private int lateFees; // DENDA PER HARI
 
+    private int id;
+    private String actualReturnDate;
+
     public CirculationDTO() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getBookId() {
@@ -50,5 +63,13 @@ public class CirculationDTO {
 
     public void setLateFees(int lateFees) {
         this.lateFees = lateFees;
+    }
+
+    public String getActualReturnDate() {
+        return actualReturnDate;
+    }
+
+    public void setActualReturnDate(String actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
     }
 }

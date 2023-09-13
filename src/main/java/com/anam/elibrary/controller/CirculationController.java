@@ -56,9 +56,20 @@ public class CirculationController {
         return "redirect:/circulations";
     }
 
-    @GetMapping("/circulations/create/return")
-    public String circulationCreateReturn(Model model) {
+    @GetMapping("/circulations/create/return/{id}")
+    public String circulationCreateReturn(Model model, @PathVariable("id") int id) {
+        Circulation circulation = circulationService.findById(id);
+        model.addAttribute("circulation", circulation);
+        model.addAttribute("circulationDTO", new CirculationDTO());
         model.addAttribute("titlePage", "CIRCULATIONS CREATE RETURN");
         return "dashboard/circulations-create-return";
+    }
+
+    @PostMapping("/circulations/create/return/{id}")
+    public String circulationCreateReturnSubmit(@ModelAttribute(value = "circulationDTO") CirculationDTO circulationDTO,
+                                                @PathVariable("id") int id) {
+
+        circulationService.saveBookReturnData(circulationDTO, id);
+        return "redirect:/circulations";
     }
 }

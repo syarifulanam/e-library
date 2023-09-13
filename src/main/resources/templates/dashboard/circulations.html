@@ -59,7 +59,8 @@
                                    class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-pen"></i> Cancel Request
                                 </a>
-                                <a th:href="@{/circulations/create/return}" class="btn btn-primary btn-sm">
+                                <a th:href="@{ '/circulations/create/return/' + ${circulation.id} }"
+                                   class="btn btn-primary btn-sm">
                                     <i class="fa-solid fa-plus"></i> Add Return
                                 </a>
                             </div>
