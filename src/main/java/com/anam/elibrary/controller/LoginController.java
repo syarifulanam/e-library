@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
     @GetMapping("login")
-    public String login(Model model) {
+    public String login(Model model, HttpSession session) {
+        if (session.getAttribute("username") != null) { // username tidak sama dengan null artinya usernamenya ada
+            return "redirect:/dashboard";
+        }
         model.addAttribute("titlePage", "LOGIN");
         model.addAttribute("loginDTO", new LoginDTO());
         return "login";
@@ -23,12 +27,12 @@ public class LoginController {
 
     @PostMapping("login")
     public String loginSubmit(@ModelAttribute(value = "login") LoginDTO loginDTO, RedirectAttributes redirectAttributes,
-                              HttpServletRequest httpServletRequest) {
+                              HttpSession session) {
         System.out.println(loginDTO.getUsername());
         System.out.println(loginDTO.getPassword());
         if (loginDTO.getUsername().equals("anam") && loginDTO.getPassword().equals("123456")) {
             System.out.println("LOGIN SUKSES");
-            //httpServletRequest.setAttribute("IS_LOGIN", "TRUE"); // IS_LOGIN = TRUE maksudnya sukses login
+            session.setAttribute("username", loginDTO.getUsername());
             return "redirect:/dashboard";
         } else {
             redirectAttributes.addFlashAttribute("msgError", "WRONG USERNAME or PASSWORD");
@@ -38,8 +42,8 @@ public class LoginController {
     }
 
     @GetMapping("logout")
-    public String logout(HttpServletRequest httpServletRequest) {
-        //httpServletRequest.removeAttribute("IS_LOGIN");
+    public String logout(HttpSession session) {
+        session.removeAttribute("username");
         return "redirect:/login";
     }
 }
