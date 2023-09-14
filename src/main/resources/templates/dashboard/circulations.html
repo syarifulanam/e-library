@@ -11,7 +11,7 @@
         </ol>
         <div>
             <a th:href="@{/circulations/create/request}" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i> Add New Request
             </a>
             <div class="table-responsive text-nowrap">
                 <table class="table">
@@ -28,69 +28,40 @@
                         <th scope="col">Late Fees</th>
                         <th scope="col">Total Late Fees</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Request</th>
-                        <th scope="col">Return</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>B001 - Fiqih</td>
-                        <td>M001 - Firman</td>
-                        <td>1-Sep-2023</td>
-                        <td>8-Sep-2023</td>
-                        <td>7</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>500</td>
-                        <td>0</td>
+                    <tr th:each="circulation, iteration : ${circulations}">
+                        <th scope="row" th:text="${circulation.id}"></th>
+                        <td th:text="${circulation.bookCode} + ' - ' + ${circulation.bookTitle}"></td>
+                        <td th:text="${circulation.memberCode} + ' - ' + ${circulation.memberName}"></td>
+                        <td th:text="${circulation.requestDate}"></td>
+                        <td th:text="${circulation.returnDate}"></td>
+                        <td th:text="${circulation.days}"></td>
+                        <td th:text="${circulation.actualReturnDate}"></td>
+                        <td th:text="${circulation.lateDays}"></td>
+                        <td th:text="${circulation.lateFees}"></td>
+                        <td th:text="${circulation.totalLateFees}"></td>
                         <td>
                             <div class="container mt-6">
-                                <span class="badge bg-warning">In Progress</span>
+                                <span th:if="${circulation.status} == 'IN PROGRESS'" class="badge bg-warning"
+                                      th:text="${circulation.status}"></span>
+                                <span th:if="${circulation.status} == 'CANCELED'" class="badge bg-danger"
+                                      th:text="${circulation.status}"></span>
+                                <span th:if="${circulation.status} == 'FINISHED'" class="badge bg-success"
+                                      th:text="${circulation.status}"></span>
                             </div>
                         </td>
                         <td>
-                            <a th:href="@{/circulations/edit/request}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </a>
-                        </td>
-                        <td>
-                            <a th:href="@{/circulations/create/return}" class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-plus"></i> Add
-                                <a th:href="@{/circulations/edit/return}" class="btn btn-warning btn-sm">
-                                    <i class="fa-solid fa-pen"></i> Edit
+                            <div th:if="${circulation.status} == 'IN PROGRESS'">
+                                <a th:href="@{ '/circulations/cancel/request/' + ${circulation.id} }"
+                                   class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-pen"></i> Cancel Request
                                 </a>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>B002 - Web</td>
-                        <td>M002 - Anam</td>
-                        <td>25-Aug-2023</td>
-                        <td>30-Aug-2023</td>
-                        <td>5</td>
-                        <td>2-Sep-2023</td>
-                        <td>3</td>
-                        <td>500</td>
-                        <td>1500</td>
-                        <td>
-                            <div class="container mt-6">
-                                <span class="badge bg-success">Success</span>
-                            </div>
-                        </td>
-                        <td>
-                            <a th:href="@{/circulations/edit/request}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </a>
-                        </td>
-                        <td>
-                            <div>
-                                <a th:href="@{/circulations/create/return}" class="btn btn-danger btn-sm">
-                                    <i class="fa-solid fa-plus"></i> Add
-                                    <a th:href="@{/circulations/edit/return}" class="btn btn-warning btn-sm">
-                                        <i class="fa-solid fa-pen"></i> Edit
-                                    </a>
+                                <a th:href="@{ '/circulations/create/return/' + ${circulation.id} }"
+                                   class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-plus"></i> Add Return
                                 </a>
                             </div>
                         </td>

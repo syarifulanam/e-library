@@ -1,0 +1,45 @@
+CREATE TABLE books (
+id INT NOT NULL AUTO_INCREMENT,
+title VARCHAR(255) NOT NULL,
+publisher VARCHAR(255) NOT NULL,
+year VARCHAR(255) NOT NULL,
+book_code VARCHAR(255) NOT NULL,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+PRIMARY KEY (id));
+
+CREATE TABLE members (
+id INT NOT NUll AUTO_INCREMENT,
+member_code VARCHAR(255) NOT NULL,
+name VARCHAR (255) NOT NULL,
+address VARCHAR (255) NOT NULL,
+phone_number VARCHAR (255) NOT NULL,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+PRIMARY KEY (id));
+
+CREATE TABLE circulations (
+id INT NOT NUll AUTO_INCREMENT,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+book_id INT NOT NUll,
+member_id INT NOT NUll,
+request_date DATETIME NOT NULL,
+return_date DATETIME NOT NULL,
+days INT NOT NULL,
+actual_return_date DATE,
+late_days INT,
+late_fees  INT NOT NUll,
+total_late_fees  INT,
+status VARCHAR(255) NOT NULL,
+PRIMARY KEY (id));
+
+CREATE TABLE users (
+id INT NOT NUll AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+username VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+role VARCHAR(255) NOT NULL,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+PRIMARY KEY (id));
